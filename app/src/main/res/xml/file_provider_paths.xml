@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    FIX #4: This file was entirely missing. FileProvider requires a paths config
+    in res/xml/. Without it the app throws IllegalArgumentException at share time.
+-->
+<paths>
+    <external-files-path name="recordings_external_files" path="." />
+    <external-path name="recordings_public" path="Music/CloudACR Recordings/" />
+    <external-path name="recordings_custom" path="." />
+</paths>

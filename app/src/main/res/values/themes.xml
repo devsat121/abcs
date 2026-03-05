@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        FIX #5a: Removed "Theme.CloudACR.Helper" from this file.
+        It belongs only in helper/res/values/themes.xml. Defining it here
+        (main app module) means helper's manifest would reference a style
+        in a different APK, which aapt cannot resolve.
+
+        FIX #5b: Replaced "colorPrimaryVariant" with "colorPrimaryContainer".
+        Material3 (Theme.Material3.*) does not have colorPrimaryVariant;
+        using it causes: "error: attribute colorPrimaryVariant not found".
+    -->
+    <style name="Theme.CloudACR" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/brand_primary</item>
+        <item name="colorPrimaryContainer">@color/brand_primary_dark</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="android:windowBackground">@color/bg_primary</item>
+    </style>
+
+    <style name="ThemeOverlay.CloudACR.AppBar" parent="">
+        <item name="android:background">@color/brand_primary</item>
+        <item name="android:textColorPrimary">@color/white</item>
+        <item name="android:textColorSecondary">@color/text_secondary_dark</item>
+        <item name="colorControlNormal">@color/white</item>
+    </style>
+</resources>

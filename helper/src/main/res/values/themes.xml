@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+        FIX #1: Style was named "Theme.CloudACRHelper" but helper/AndroidManifest.xml
+        referenced "Theme.CloudACR.Helper". The dot-mismatch causes aapt
+        resource-not-found error at compile time.
+        Corrected to "Theme.CloudACR.Helper" to match the manifest exactly.
+    -->
+    <style name="Theme.CloudACR.Helper" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/accent_green</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSurface">@color/surface</item>
+        <item name="android:windowBackground">@color/bg_helper</item>
+    </style>
+</resources>
