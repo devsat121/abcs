@@ -1,0 +1,45 @@
+name: CloudACR Android CI
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    name: Build and Test
+    runs-on: ubuntu-latest
+
+    steps:
+      # 1. Standard repository checkout
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      # 2. Configure the Java Runtime Environment
+      # Required by compileOptions and kotlinOptions in project build.gradle files
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          java-version: '17'
+          distribution: 'temurin'
+          cache: 'gradle'
+
+      # 3. Initialize Gradle and provide execution permissions
+      # This addresses previous CI failures regarding the gradlew stub
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      # 4. Execute Build Tasks
+      # Builds both :app and :helper modules simultaneously
+      - name: Build with Gradle
+        run: ./gradlew assembleDebug
+
+      # 5. Archive Build Artifacts
+      - name: Upload APKs
+        uses: actions/upload-artifact@v4
+        with:
+          name: CloudACR-Packages
+          path: |
+            app/build/outputs/apk/debug/*.apk
+            helper/build/outputs/apk/debug/*.apk
